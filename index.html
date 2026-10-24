@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self'; connect-src 'self' wss://0.peerjs.com https://0.peerjs.com; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<title>Hashdrop – private file transfer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="bar-in">
+<div class="logo"><svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path d="M16 2c5.2 6 9.5 10.2 9.5 16a9.5 9.5 0 01-19 0C6.5 12.2 10.8 8 16 2z" fill="currentColor"/><circle cx="16" cy="17" r="2.8" fill="#0b1f4b"/><rect x="14.8" y="18.5" width="2.4" height="5" rx="1.2" fill="#0b1f4b"/></svg><h1>Hashdrop</h1></div>
+<span class="tag">Encrypted, device to device</span>
+</div></header>
+
+<main class="wrap">
+<ul class="trust"><li>End-to-end encrypted</li><li>Never uploaded</li><li>No account</li></ul>
+<div class="tabs" role="tablist">
+<button role="tab" id="tS" aria-selected="true">Send</button>
+<button role="tab" id="tR" aria-selected="false">Receive</button>
+</div>
+
+<section class="card send" id="pSend">
+<div id="s0">
+<label class="mode"><input type="checkbox" id="sec"><span class="sw"></span><span class="mt"><b id="mn">Quick</b><small id="mh">Fastest. Connects right away, no code to compare.</small></span></label>
+<label class="lbl" for="pwi">Passphrase <em>(optional, adds a second lock)</em></label>
+<input class="field" type="password" id="pwi" autocomplete="off" placeholder="Share it by a different channel">
+<div class="drop" id="dz">
+<svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3"/></svg>
+<b>Drop files here</b>
+<div class="row"><button class="btn" id="bf">Choose files</button><button class="btn alt" id="bd">Choose folder</button></div>
+</div>
+<input type="file" id="fi" multiple hidden>
+<input type="file" id="di" webkitdirectory hidden>
+</div>
+<div id="s1" hidden>
+<ul class="files" id="fl"></ul>
+<div class="split">
+<div><p class="lbl">Code</p><div class="otp" id="otp"></div></div>
+<img id="qr" alt="QR code with receive link" width="140" height="140">
+</div>
+<div class="row"><button class="btn" id="cp">Copy link</button><button class="btn ghost" id="cx">Cancel</button></div>
+</div>
+</section>
+
+<section class="card recv" id="pRecv" hidden>
+<p class="lbl">Enter the 6-digit code</p>
+<input class="field big" type="text" id="rc" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="000000">
+<div class="row"><button class="btn teal" id="rg">Connect</button></div>
+</section>
+
+<section class="card live" id="pLive" hidden>
+<div id="pw" hidden>
+<p class="lbl">This transfer needs a passphrase</p>
+<input class="field" type="password" id="pwr" autocomplete="off">
+<div class="row"><button class="btn teal" id="pwy">Unlock</button></div>
+</div>
+<div id="vf" hidden>
+<p class="lbl">Check this code matches on both devices</p>
+<div class="sas" id="sas"></div>
+<div class="row"><button class="btn teal" id="vy">It matches</button><button class="btn ghost" id="vn">It doesn’t</button></div>
+</div>
+<div id="ac" hidden>
+<p class="lbl" id="ah">Incoming</p>
+<p class="fname" id="an"></p>
+<div class="row"><button class="btn teal" id="ay">Save</button><button class="btn ghost" id="ax">Decline</button></div>
+</div>
+<div id="pg" hidden>
+<div class="fname" id="pn"></div>
+<div class="prog"><i id="pb"></i></div>
+<div class="meta"><span id="pp">0%</span><span id="ps"></span></div>
+</div>
+<p class="status" id="st" role="status" aria-live="polite"></p>
+<div class="row" id="again" hidden><button class="btn ghost" id="ag">Start over</button></div>
+</section>
+
+<footer>Files never touch a server. Keep this page open until the transfer finishes.</footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
