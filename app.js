@@ -216,6 +216,34 @@ $("#rc").addEventListener("keydown",e=>{if(e.key==="Enter")$("#rg").click()});
 $("#sec").onchange=e=>{const c=e.target.checked;
   $("#mn").textContent=c?"Most secure":"Quick";
   $("#mh").textContent=c?"Both people confirm a short code before anything is sent.":"Fastest. Connects right away, no code to compare."};
+/* ---------- theme, text/paste, feedback ---------- */
+const FEEDBACK_EMAIL="you@example.com"; /* change to your own address */
+const root=document.documentElement;
+try{const t=localStorage.getItem("hd-theme");if(t)root.dataset.theme=t}catch{}
+$("#th").onclick=()=>{
+  const dark=root.dataset.theme?root.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches,n=dark?"light":"dark";
+  root.dataset.theme=n;try{localStorage.setItem("hd-theme",n)}catch{}
+};
+const idle=()=>!$("#pSend").hidden&&!$("#s0").hidden;
+function sendText(t){
+  t=t.trim();if(!t||!idle())return;
+  pick([new File([t],"text-"+new Date().toISOString().slice(0,16).replace(/[:T]/g,"-")+".txt",{type:"text/plain"})]);
+}
+$("#tb").onclick=()=>{show("#tx",$("#tx").hidden);$("#ta").focus()};
+$("#ts").onclick=()=>sendText($("#ta").value);
+document.addEventListener("paste",e=>{
+  if(!idle()||/^(INPUT|TEXTAREA)$/.test(e.target.tagName))return;
+  const fs=e.clipboardData.files;
+  if(fs.length){e.preventDefault();pick(fs);return}
+  const t=e.clipboardData.getData("text");if(t){e.preventDefault();sendText(t)}
+});
+const dlg=$("#fbd");
+$("#fbb").onclick=()=>dlg.showModal();$("#fx").onclick=()=>dlg.close();
+$("#fy").onclick=()=>{
+  const n=$("#fn").value.trim(),s=$("#fs").value.trim();if(!s){$("#fs").focus();return}
+  location.href="mailto:"+FEEDBACK_EMAIL+"?subject="+encodeURIComponent("Hashdrop feedback"+(n?" from "+n:""))+"&body="+encodeURIComponent("Name: "+(n||"(not given)")+"\n\n"+s);
+  dlg.close();
+};
 /* ---------- navigation ---------- */
 function tab(r){
   $("#tS").setAttribute("aria-selected",!r);$("#tR").setAttribute("aria-selected",r);
