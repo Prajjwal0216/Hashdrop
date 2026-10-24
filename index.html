@@ -11,7 +11,7 @@
 <body>
 <header class="top"><div class="bar-in">
 <div class="logo"><svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path d="M16 2c5.2 6 9.5 10.2 9.5 16a9.5 9.5 0 01-19 0C6.5 12.2 10.8 8 16 2z" fill="currentColor"/><circle cx="16" cy="17" r="2.8" fill="#0b1f4b"/><rect x="14.8" y="18.5" width="2.4" height="5" rx="1.2" fill="#0b1f4b"/></svg><h1>Hashdrop</h1></div>
-<span class="tag">Encrypted, device to device</span>
+<div class="hr"><span class="tag">Encrypted, device to device</span><button class="ico" id="th" aria-label="Switch light or dark mode"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 010 18z" fill="currentColor"/></svg></button></div>
 </div></header>
 
 <main class="wrap">
@@ -28,11 +28,13 @@
 <input class="field" type="password" id="pwi" autocomplete="off" placeholder="Share it by a different channel">
 <div class="drop" id="dz">
 <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3"/></svg>
-<b>Drop files here</b>
+<b><span class="dd">Drop files here</span><span class="tp">Pick what to send</span></b>
 <div class="row"><button class="btn" id="bf">Choose files</button><button class="btn alt" id="bd">Choose folder</button></div>
 </div>
 <input type="file" id="fi" multiple hidden>
 <input type="file" id="di" webkitdirectory hidden>
+<button class="link" id="tb">Or send text instead</button>
+<div id="tx" hidden><textarea class="field" id="ta" rows="5" placeholder="Type or paste text here. On a computer you can also press Ctrl+V anywhere on this page."></textarea><div class="row"><button class="btn" id="ts">Send as text file</button></div></div>
 </div>
 <div id="s1" hidden>
 <ul class="files" id="fl"></ul>
@@ -75,7 +77,8 @@
 <div class="row" id="again" hidden><button class="btn ghost" id="ag">Start over</button></div>
 </section>
 
-<footer>Files never touch a server. Keep this page open until the transfer finishes.</footer>
+<footer>Files never touch a server. Keep this page open until the transfer finishes.<br><button class="link" id="fbb">Send feedback</button></footer>
+<dialog id="fbd"><div class="dlg"><h2>Share your thoughts</h2><label class="lbl" for="fn">Your name</label><input class="field" id="fn" maxlength="60" autocomplete="name"><label class="lbl" for="fs">Suggestion</label><textarea class="field" id="fs" rows="5" maxlength="1500" placeholder="What would make Hashdrop better?"></textarea><div class="row"><button class="btn" id="fy">Send feedback</button><button class="btn ghost" id="fx">Cancel</button></div></div></dialog>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
