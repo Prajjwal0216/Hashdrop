@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self'; connect-src 'self' wss://0.peerjs.com https://0.peerjs.com; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self' wss://0.peerjs.com https://0.peerjs.com; img-src 'self' data:; base-uri 'none'; form-action 'none'">
 <title>Hashdrop – private file transfer</title>
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -16,7 +16,6 @@
 </div></header>
 
 <main class="wrap">
-<ul class="trust"><li>End-to-end encrypted</li><li>Never uploaded</li><li>No account</li></ul>
 <div class="tabs" role="tablist">
 <button role="tab" id="tS" aria-selected="true">Send</button>
 <button role="tab" id="tR" aria-selected="false">Receive</button>
@@ -49,7 +48,7 @@
 
 <section class="card recv" id="pRecv" hidden>
 <p class="lbl">Enter the 6-digit code</p>
-<input class="field big" type="text" id="rc" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="000000">
+<input class="field big" type="text" id="rc" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="000000">
 <div class="row"><button class="btn teal" id="rg">Connect</button></div>
 </section>
 
@@ -67,6 +66,7 @@
 <div id="ac" hidden>
 <p class="lbl" id="ah">Incoming</p>
 <p class="fname" id="an"></p>
+<p class="warn" id="aw"></p>
 <div class="row"><button class="btn teal" id="ay">Save</button><button class="btn ghost" id="ax">Decline</button></div>
 </div>
 <div id="pg" hidden>
@@ -78,12 +78,12 @@
 <div class="row" id="again" hidden><button class="btn ghost" id="ag">Start over</button></div>
 </section>
 
-<footer>Files never touch a server. Keep this page open until the transfer finishes.<br><button class="link" id="fbb">Send feedback</button></footer>
-<dialog id="fbd"><div class="dlg"><h2>Share your thoughts</h2><label class="lbl" for="fn">Your name</label><input class="field" id="fn" maxlength="60" autocomplete="name"><label class="lbl" for="fs">Suggestion</label><textarea class="field" id="fs" rows="5" maxlength="1500" placeholder="What would make Hashdrop better?"></textarea><div class="row"><button class="btn" id="fy">Send feedback</button><button class="btn ghost" id="fx">Cancel</button></div></div></dialog>
+<ul class="trust"><li>End-to-end encrypted</li><li>Never uploaded</li><li>No account</li></ul>
+<footer>Files never touch a server. Keep this page open until the transfer finishes.</footer>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="peerjs.min.js"></script>
+<script src="qrcode.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
